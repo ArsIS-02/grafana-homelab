@@ -1,0 +1,131 @@
+---
+# Включает сборщики node_exporter, которых не хватает панелям Grafana
+# «Node Exporter Full»: TCP Stat, IRQ Detail, Power Supply.
+#
+# Ничего не ломает: исходный юнит не трогается, добавляется drop-in,
+# который можно удалить одной командой:
+#   rm -rf /etc/systemd/system/node_exporter.service.d && systemctl daemon-reload && systemctl restart node_exporter
+#
+# Хосты, где node_exporter работает в контейнере (нет systemd-юнита),
+# пропускаются с понятным сообщением.
+
+- name: node_exporter — дополнительные сборщики для Grafana
+  hosts: all
+  become: true
+  gather_facts: false
+
+  # На этих хостах переменные прокси ломают питоновский SSL даже на http://,
+  # поэтому проверка делается curl-ом и прокси отключается для всех задач.
+  environment:
+    http_proxy: ""
+    https_proxy: ""
+    HTTP_PROXY: ""
+    HTTPS_PROXY: ""
+    no_proxy: "*"
+    NO_PROXY: "*"
+
+  vars:
+    extra_flags:
+      - --collector.tcpstat
+      - --collector.interrupts
+      - --collector.powersupplyclass
+
+  tasks:
+    - name: Найти имя службы node_exporter
+      ansible.builtin.shell: |
+        for u in node_exporter prometheus-node-exporter node-exporter; do
+          if systemctl cat "$u.service" >/dev/null 2>&1; then echo "$u"; exit 0; fi
+        done
+        exit 1
+      args:
+        executable: /bin/bash
+      register: ne_unit
+      changed_when: false
+      failed_when: false
+      check_mode: false
+
+    - name: Сообщить, если службы нет
+      ansible.builtin.debug:
+        msg: "node_exporter не установлен как служба systemd — хост пропущен (возможно, он работает в контейнере)"
+      when: ne_unit.rc | default(1) != 0
+
+    - name: Пропустить такой хост
+      ansible.builtin.meta: end_host
+      when: ne_unit.rc | default(1) != 0
+
+    - name: Прочитать текущую команду запуска
+      ansible.builtin.command: "systemctl show -p ExecStart --value {{ ne_unit.stdout }}.service"
+      register: ne_exec
+      changed_when: false
+      check_mode: false
+
+    - name: Выделить команду с аргументами
+      ansible.builtin.set_fact:
+        ne_cmdline: "{{ ((ne_exec.stdout | default('')) | regex_search('argv\\[\\]=([^;]+)', '\\1') | default([], true) | first | default('')) | trim }}"
+
+    - name: Убедиться, что команда определилась
+      ansible.builtin.assert:
+        that: ne_cmdline | length > 0
+        fail_msg: "Не удалось определить команду запуска службы {{ ne_unit.stdout }}"
+        success_msg: "Команда запуска: {{ ne_cmdline }}"
+
+    - name: Создать каталог для drop-in
+      ansible.builtin.file:
+        path: "/etc/systemd/system/{{ ne_unit.stdout }}.service.d"
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+
+    - name: Положить drop-in с дополнительными сборщиками
+      ansible.builtin.copy:
+        dest: "/etc/systemd/system/{{ ne_unit.stdout }}.service.d/10-collectors.conf"
+        owner: root
+        group: root
+        mode: "0644"
+        content: |
+          # Добавлено для панелей Grafana «Node Exporter Full»:
+          # TCP Stat, IRQ Detail, Power Supply.
+          # Пустой ExecStart обязателен — он сбрасывает команду из основного юнита.
+          [Service]
+          ExecStart=
+          ExecStart={{ ne_cmdline }} {{ extra_flags | join(' ') }}
+      register: ne_dropin
+
+    - name: Перечитать юниты и перезапустить службу
+      ansible.builtin.systemd:
+        name: "{{ ne_unit.stdout }}"
+        daemon_reload: true
+        state: restarted
+      when: ne_dropin.changed
+
+    - name: Дать службе время запуститься после перезапуска
+      ansible.builtin.pause:
+        seconds: 5
+      when: ne_dropin.changed and not ansible_check_mode
+
+    - name: Дождаться метрик и проверить сборщики
+      ansible.builtin.shell: |
+        set -o pipefail
+        body="$(curl -sf --noproxy '*' --max-time 5 http://127.0.0.1:9100/metrics)" || exit 1
+        for n in node_interrupts_total node_tcp_connection_states node_power_supply_online; do
+          if printf '%s\n' "$body" | grep -q "^${n}"; then
+            echo "${n}: есть"
+          else
+            echo "${n}: нет"
+          fi
+        done
+      args:
+        executable: /bin/bash
+      register: ne_check
+      retries: 6
+      delay: 3
+      until: ne_check.rc == 0
+      changed_when: false
+      check_mode: false
+
+    - name: Что появилось
+      ansible.builtin.debug:
+        msg: >-
+          {{ ne_check.stdout_lines | join('; ') }}{{
+          ' — это состояние ДО применения, запуск был проверочным' if ansible_check_mode else '' }}
