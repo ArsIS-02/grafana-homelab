@@ -10,7 +10,7 @@ Zabbix нужен для хостов, где нет node_exporter (Windows, к�
 | Access | Server (proxy) |
 | Basic auth | **выключено**: перед API нет веб-сервера с паролем, а включённая авторизация лишь дублирует вход |
 | Auth type | User and password |
-| Username | выделенный пользователь `grafana` |
+| Username | выделенный пользователь `grafana` (права ниже) |
 | Cache TTL | `1m` — не нагружать слабый сервер (Raspberry Pi) |
 | Trends | включены |
 
@@ -19,6 +19,39 @@ Zabbix нужен для хостов, где нет node_exporter (Windows, к�
 ## Пользователь только для чтения
 
 Не подключайте Grafana под `Admin`. В Zabbix: Users → Users → Create user, роль **User**, группа пользователей с правом **Read** на нужные группы хостов. Утечка такого пароля не даст управлять Zabbix.
+
+## Права пользователя `grafana`
+
+Роль **User** сама по себе не даёт видеть хосты: нужна группа пользователей с правом чтения.
+
+1. Users → User groups → Create: имя `Grafana read`, пользователь `grafana`.
+2. Вкладка «Host permissions»: выберите группы узлов (или «Все группы»), право **Read**, нажмите «Add» внутри блока, затем «Update». Если пропустить «Add» внутри блока, группа сохранится без прав.
+3. Уберите пользователя из группы `Guests`.
+4. Роль пользователя: доступ к API включён, методы `hostgroup.get`, `host.get`, `item.get`, `history.get`, `trend.get` не запрещены.
+
+Без этого панели пусты, а в ответе запроса видно `No permissions to call "hostgroup.get"`. Эту ошибку не показывает кнопка «Save & test».
+
+## Zabbix 6.4: приложений нет, есть теги
+
+В 6.4 приложения заменены тегами. Плагин всё равно дописывает к запросу `itemTag: Application: /.*/`, и такой фильтр не находит ни одного элемента: все панели пусты, хотя прямой запрос работает. В дашборде `application.filter` и `itemTag.filter` пусты, а файловые системы выбираются по имени элемента `/^FS \[.*\]: Space: Used, in %$/`.
+
+## Linux и Windows в одних панелях
+
+Шаблоны называют элементы по-разному, поэтому регулярки покрывают оба варианта:
+
+| Что | Linux | Windows |
+|---|---|---|
+| Аптайм | `System uptime` | `Uptime` |
+| Загрузка диска | `Disk utilization` | `Disk utilization by idle time` |
+| Режимы CPU | `user`, `system`, `iowait`, `nice`, `softirq`, `steal` | `user`, `privileged`, `interrupt`, `DPC` |
+| Память | `Available memory`, `Total memory` | `Used memory`, `Total memory` |
+| Нагрузка | `Load average` | `CPU queue length` |
+
+Панель «Агент Zabbix» берёт последнее значение (`lastNotNull`), а не минимум за период: иначе короткий простой в окне времени навсегда красит плитку в «Недоступен».
+
+## Первая загрузка медленная
+
+Дашборд делает около 20 запросов, а Zabbix стоит на Raspberry Pi: первая отрисовка может занять до минуты, дальше работает кэш источника (`Cache TTL`).
 
 ## Ошибка «params: an array or object is expected»
 

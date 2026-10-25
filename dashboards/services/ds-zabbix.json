@@ -53,7 +53,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "description": "Загрузка CPU по хостам (айтем «CPU utilization»).",
       "fieldConfig": {
@@ -104,25 +104,25 @@
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "value_and_name",
+        "textMode": "value",
         "wideLayout": true
       },
       "pluginVersion": "13.2.4",
       "targets": [
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
             "filter": "/: CPU utilization$/"
@@ -133,7 +133,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Загрузка CPU",
@@ -142,7 +146,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "description": "Использование памяти.",
       "fieldConfig": {
@@ -193,25 +197,25 @@
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "value_and_name",
+        "textMode": "value",
         "wideLayout": true
       },
       "pluginVersion": "13.2.4",
       "targets": [
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
             "filter": "/: Memory utilization$/"
@@ -222,7 +226,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Использование памяти",
@@ -231,7 +239,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "description": "1 — агент доступен, 0 — нет.",
       "fieldConfig": {
@@ -252,7 +260,24 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "none",
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "Недоступен",
+                  "color": "red",
+                  "index": 0
+                },
+                "1": {
+                  "text": "Доступен",
+                  "color": "green",
+                  "index": 1
+                }
+              }
+            }
+          ]
         }
       },
       "gridPos": {
@@ -270,31 +295,31 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "min"
+            "lastNotNull"
           ],
           "fields": "",
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "value_and_name",
+        "textMode": "value",
         "wideLayout": true
       },
       "pluginVersion": "13.2.4",
       "targets": [
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
             "filter": "/: Zabbix agent availability$/"
@@ -305,7 +330,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Агент Zabbix",
@@ -314,7 +343,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "description": "Самый заполненный раздел по каждому хосту.",
       "fieldConfig": {
@@ -372,21 +401,21 @@
       "targets": [
         {
           "application": {
-            "filter": "/: FS \\[/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
-            "filter": "/: Used, in %$/"
+            "filter": "/^FS \\[.*\\]: Space: Used, in %$/"
           },
           "options": {
             "showDisabledItems": false,
@@ -394,7 +423,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Макс. занятость ФС",
@@ -403,7 +436,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "description": "Аптайм хостов.",
       "fieldConfig": {
@@ -444,28 +477,28 @@
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "value_and_name",
+        "textMode": "value",
         "wideLayout": true
       },
       "pluginVersion": "13.2.4",
       "targets": [
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
-            "filter": "/: System uptime$/"
+            "filter": "/: (System uptime|Uptime)$/"
           },
           "options": {
             "showDisabledItems": false,
@@ -473,7 +506,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Время работы",
@@ -495,7 +532,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "fieldConfig": {
         "defaults": {
@@ -582,18 +619,18 @@
       "targets": [
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
             "filter": "/: CPU utilization$/"
@@ -604,7 +641,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Загрузка CPU",
@@ -613,7 +654,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "description": "Разложение нагрузки по режимам CPU (Linux).",
       "fieldConfig": {
@@ -700,21 +741,21 @@
       "targets": [
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
-            "filter": "/: CPU (user|system|iowait|nice|softirq|interrupt|steal) time$/"
+            "filter": "/: CPU (user|system|iowait|nice|softirq|interrupt|steal|privileged|DPC) time$/"
           },
           "options": {
             "showDisabledItems": false,
@@ -722,7 +763,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "CPU по режимам",
@@ -744,7 +789,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "description": "Load average 1/5/15 минут.",
       "fieldConfig": {
@@ -830,18 +875,18 @@
       "targets": [
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
             "filter": "/: Load average \\((1m|5m|15m) avg\\)$/"
@@ -852,7 +897,41 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "eg2asfb9khv5sa"
+          },
+          "functions": [],
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "/^${host}$/"
+          },
+          "item": {
+            "filter": "/: CPU queue length$/"
+          },
+          "options": {
+            "showDisabledItems": false,
+            "skipEmptyValues": true
+          },
+          "queryType": "0",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Load average",
@@ -861,7 +940,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "description": "Доступная и полная память.",
       "fieldConfig": {
@@ -947,21 +1026,21 @@
       "targets": [
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
-            "filter": "/: (Available memory|Total memory)$/"
+            "filter": "/: (Available memory|Used memory|Total memory)$/"
           },
           "options": {
             "showDisabledItems": false,
@@ -969,7 +1048,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Память",
@@ -978,7 +1061,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "description": "Память (сплошная) и свободный swap (пунктир).",
       "fieldConfig": {
@@ -1086,18 +1169,18 @@
       "targets": [
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
             "filter": "/: Memory utilization$/"
@@ -1108,22 +1191,26 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         },
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
             "filter": "/: Free swap space in %$/"
@@ -1134,7 +1221,11 @@
           },
           "queryType": "0",
           "refId": "B",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Память и swap, %",
@@ -1156,7 +1247,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "description": "Заполнение разделов. Легенда: host: FS [mount]: Space: Used, in %.",
       "fieldConfig": {
@@ -1207,9 +1298,11 @@
         "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": [],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
-          "values": true
+          "values": false
         },
         "showUnfilled": true,
         "sizing": "auto",
@@ -1219,21 +1312,21 @@
       "targets": [
         {
           "application": {
-            "filter": "/: FS \\[/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
-            "filter": "/: Used, in %$/"
+            "filter": "/^FS \\[.*\\]: Space: Used, in %$/"
           },
           "options": {
             "showDisabledItems": false,
@@ -1241,7 +1334,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Файловые системы, занято %",
@@ -1250,7 +1347,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "fieldConfig": {
         "defaults": {
@@ -1337,21 +1434,21 @@
       "targets": [
         {
           "application": {
-            "filter": "/: FS \\[/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
-            "filter": "/: Used, in %$/"
+            "filter": "/^FS \\[.*\\]: Space: Used, in %$/"
           },
           "options": {
             "showDisabledItems": false,
@@ -1359,7 +1456,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Занятость ФС во времени",
@@ -1381,7 +1482,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "description": "Операции чтения и записи по устройствам.",
       "fieldConfig": {
@@ -1467,18 +1568,18 @@
       "targets": [
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
             "filter": "/: Disk (read|write) rate$/"
@@ -1489,7 +1590,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Дисковые операции",
@@ -1498,7 +1603,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "fieldConfig": {
         "defaults": {
@@ -1585,21 +1690,21 @@
       "targets": [
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
-            "filter": "/: Disk utilization$/"
+            "filter": "/: Disk utilization( by idle time)?$/"
           },
           "options": {
             "showDisabledItems": false,
@@ -1607,7 +1712,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Загрузка дисков",
@@ -1629,7 +1738,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "description": "Входящий и исходящий трафик по интерфейсам.",
       "fieldConfig": {
@@ -1715,18 +1824,18 @@
       "targets": [
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
             "filter": "/: Bits (received|sent)$/"
@@ -1737,7 +1846,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Трафик интерфейсов",
@@ -1746,7 +1859,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "description": "Ошибки и потери пакетов. Любое ненулевое значение — повод смотреть.",
       "fieldConfig": {
@@ -1832,18 +1945,18 @@
       "targets": [
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
             "filter": "/.*/"
           },
           "host": {
-            "filter": "/^$host$/"
+            "filter": "/^${host}$/"
           },
           "item": {
             "filter": "/: (Inbound|Outbound) packets (discarded|with errors)$/"
@@ -1854,7 +1967,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Ошибки и отбросы на интерфейсах",
@@ -1876,7 +1993,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "description": "Скорость обработки значений сервером Zabbix.",
       "fieldConfig": {
@@ -1962,11 +2079,11 @@
       "targets": [
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
@@ -1984,7 +2101,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Zabbix: значений в секунду",
@@ -1993,7 +2114,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "description": "Очереди Zabbix. Рост Queue — сервер не успевает.",
       "fieldConfig": {
@@ -2079,11 +2200,11 @@
       "targets": [
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
@@ -2101,7 +2222,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Zabbix: очереди",
@@ -2110,7 +2235,7 @@
     {
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "ff1imsm7iru9sf"
+        "uid": "eg2asfb9khv5sa"
       },
       "description": "Заполнение внутренних кэшей Zabbix.",
       "fieldConfig": {
@@ -2198,11 +2323,11 @@
       "targets": [
         {
           "application": {
-            "filter": "/.*/"
+            "filter": ""
           },
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "ff1imsm7iru9sf"
+            "uid": "eg2asfb9khv5sa"
           },
           "functions": [],
           "group": {
@@ -2220,7 +2345,11 @@
           },
           "queryType": "0",
           "refId": "A",
-          "resultFormat": "time_series"
+          "resultFormat": "time_series",
+          "itemTag": {
+            "filter": ""
+          },
+          "schema": 12
         }
       ],
       "title": "Zabbix: использование кэша, %",
@@ -2249,9 +2378,59 @@
         "name": "host",
         "options": [
           {
-            "selected": false,
+            "text": "DC.arsentyev.local",
+            "value": "DC.arsentyev.local",
+            "selected": false
+          },
+          {
             "text": "homeserver.monitoring.test",
-            "value": "homeserver.monitoring.test"
+            "value": "homeserver.monitoring.test",
+            "selected": true
+          },
+          {
+            "text": "homelab.monitoring.test",
+            "value": "homelab.monitoring.test",
+            "selected": false
+          },
+          {
+            "text": "redos-server.monitoring.test",
+            "value": "redos-server.monitoring.test",
+            "selected": false
+          },
+          {
+            "text": "RedOS-Workstation",
+            "value": "RedOS-Workstation",
+            "selected": false
+          },
+          {
+            "text": "RedOSRP16.monitoring.test",
+            "value": "RedOSRP16.monitoring.test",
+            "selected": false
+          },
+          {
+            "text": "redos-raspi.monitoring.test",
+            "value": "redos-raspi.monitoring.test",
+            "selected": false
+          },
+          {
+            "text": "server.monitoring.test",
+            "value": "server.monitoring.test",
+            "selected": false
+          },
+          {
+            "text": "W11-Desktop",
+            "value": "W11-Desktop",
+            "selected": false
+          },
+          {
+            "text": "wazuh.monitoring.test",
+            "value": "wazuh.monitoring.test",
+            "selected": false
+          },
+          {
+            "text": "wazuh-homelab.monioring.test",
+            "value": "wazuh-homelab.monioring.test",
+            "selected": false
           }
         ],
         "query": "DC.arsentyev.local,homeserver.monitoring.test,homelab.monitoring.test,redos-server.monitoring.test,RedOS-Workstation,RedOSRP16.monitoring.test,redos-raspi.monitoring.test,server.monitoring.test,W11-Desktop,wazuh.monitoring.test,wazuh-homelab.monioring.test",
