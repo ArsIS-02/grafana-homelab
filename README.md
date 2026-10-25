@@ -34,6 +34,10 @@
 
 ![Безопасность](docs/images/security.jpg)
 
+**Обзор Zabbix** — хосты, которых нет в Prometheus (Windows, часть RED OS): CPU, память, диски, сеть.
+
+![Обзор Zabbix](docs/images/zabbix.jpg)
+
 ## Дашборды
 
 Раскладка по папкам Grafana повторяет каталог `dashboards/`.
