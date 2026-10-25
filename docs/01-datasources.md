@@ -8,7 +8,7 @@
 | Graylog Events | elasticsearch | `eg27m552vbgn4e` | OpenSearch, индекс `gl-events_*`, поле времени `timestamp` |
 | Graylog OpenSearch | elasticsearch | `eg242vho5o45cc` | OpenSearch, индексы Graylog (`graylog_*`) |
 | Loki | loki | `cf1ikgnvi3chsf` | `http://loki:3100` |
-| Zabbix-homeserver | alexanderzobnin-zabbix-datasource | `ff1imsm7iru9sf` | см. [04-zabbix.md](04-zabbix.md) |
+| Zabbix-homeserver | alexanderzobnin-zabbix-datasource | `eg2asfb9khv5sa` | см. [04-zabbix.md](04-zabbix.md) |
 
 ## Создание с нужным uid через API
 

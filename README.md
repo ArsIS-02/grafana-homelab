@@ -78,7 +78,7 @@ sed -i 's/bg23rxlukphc0f/<ваш-uid-prometheus>/g' dashboards/*/*.json
 - [docs/01-datasources.md](docs/01-datasources.md) — источники данных и их uid
 - [docs/02-dashboards.md](docs/02-dashboards.md) — папки, главная страница, русские названия
 - [docs/03-annotations.md](docs/03-annotations.md) — события Graylog поверх графиков
-- [docs/04-zabbix.md](docs/04-zabbix.md) — как правильно подключить Zabbix
+- [docs/04-zabbix.md](docs/04-zabbix.md) — как правильно подключить Zabbix и настроить пользователя `grafana` (без него панели Zabbix пусты)
 - [docs/05-pitfalls.md](docs/05-pitfalls.md) — грабли и решения
 
 ## Скрипты
