@@ -94,7 +94,7 @@
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "value",
+        "textMode": "name",
         "wideLayout": true
       },
       "pluginVersion": "13.2.4",
@@ -159,7 +159,7 @@
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "value",
+        "textMode": "name",
         "wideLayout": true
       },
       "pluginVersion": "13.2.4",
@@ -170,9 +170,9 @@
             "uid": "bg23rxlukphc0f"
           },
           "editorMode": "code",
-          "expr": "max by (os_pretty_name) (node_os_info{instance=~\"$instance\"})",
+          "expr": "max by (pretty_name) (node_os_info{instance=~\"$instance\"})",
           "instant": false,
-          "legendFormat": "{{os_pretty_name}}",
+          "legendFormat": "{{pretty_name}}",
           "range": true,
           "refId": "A"
         }
@@ -891,7 +891,7 @@
             "uid": "bg23rxlukphc0f"
           },
           "editorMode": "code",
-          "expr": "sum by (mode) (rate(node_cpu_seconds_total{instance=~\"$instance\",mode!=\"idle\"}[$__rate_interval])) * 100",
+          "expr": "sum by (mode) (rate(node_cpu_seconds_total{instance=~\"$instance\",mode!=\"idle\"}[$__rate_interval])) / scalar(count(node_cpu_seconds_total{instance=~\"$instance\",mode=\"idle\"})) * 100",
           "instant": false,
           "legendFormat": "{{mode}}",
           "range": true,
