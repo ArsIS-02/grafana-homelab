@@ -99,4 +99,4 @@ Grafana 13.2, Prometheus, node_exporter, cAdvisor, Graylog 7.2, плагин Zab
 
 ## Лицензия
 
-MIT, см. [LICENSE](LICENSE).
+GPL-3.0, см. [LICENSE](LICENSE).
