@@ -1,0 +1,1009 @@
+{
+ "uid": "ds-response",
+ "title": "Реагирование (SOC)",
+ "description": "Метрики реагирования: тикеты GLPI, корреляция TicketBridge, блокировки BlockBoard, алерты Graylog по приоритетам.",
+ "tags": [
+  "homelab",
+  "soc",
+  "graylog"
+ ],
+ "timezone": "browser",
+ "editable": true,
+ "graphTooltip": 1,
+ "refresh": "1h",
+ "time": {
+  "from": "now-90d",
+  "to": "now"
+ },
+ "annotations": {
+  "list": [
+   {
+    "name": "Алерты Graylog",
+    "datasource": {
+     "type": "elasticsearch",
+     "uid": "eg27m552vbgn4e"
+    },
+    "enable": true,
+    "iconColor": "#FA6400",
+    "hide": false,
+    "builtIn": 0,
+    "query": {
+     "query": "alert:true",
+     "refId": "Anno",
+     "timeField": "timestamp",
+     "textField": "message",
+     "tagsField": "priority"
+    },
+    "type": "dashboard"
+   }
+  ]
+ },
+ "links": [],
+ "schemaVersion": 41,
+ "version": 0,
+ "fiscalYearStartMonth": 0,
+ "weekStart": "",
+ "liveNow": false,
+ "templating": {
+  "list": []
+ },
+ "panels": [
+  {
+   "id": 100,
+   "type": "row",
+   "title": "Сейчас",
+   "collapsed": false,
+   "gridPos": {
+    "h": 1,
+    "w": 24,
+    "x": 0,
+    "y": 0
+   },
+   "panels": []
+  },
+  {
+   "id": 1,
+   "type": "stat",
+   "title": "Всего тикетов GLPI",
+   "datasource": {
+    "type": "elasticsearch",
+    "uid": "eg242vho5o45cc"
+   },
+   "gridPos": {
+    "h": 6,
+    "w": 6,
+    "x": 0,
+    "y": 1
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "query": "ls_event:weekly",
+     "metrics": [
+      {
+       "id": "1",
+       "type": "max",
+       "field": "ls_glpi_total",
+       "meta": {},
+       "settings": {},
+       "alias": ""
+      }
+     ],
+     "bucketAggs": [
+      {
+       "id": "2",
+       "type": "date_histogram",
+       "field": "timestamp",
+       "settings": {
+        "interval": "auto",
+        "min_doc_count": 0
+       }
+      }
+     ],
+     "timeField": "timestamp",
+     "datasource": {
+      "type": "elasticsearch",
+      "uid": "eg242vho5o45cc"
+     }
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "color": {
+      "mode": "thresholds"
+     },
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "blue",
+        "value": null
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "colorMode": "background",
+    "graphMode": "none",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "textMode": "auto",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ],
+     "fields": "",
+     "values": false
+    }
+   }
+  },
+  {
+   "id": 2,
+   "type": "stat",
+   "title": "Открыто тикетов",
+   "datasource": {
+    "type": "elasticsearch",
+    "uid": "eg242vho5o45cc"
+   },
+   "gridPos": {
+    "h": 6,
+    "w": 6,
+    "x": 6,
+    "y": 1
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "query": "ls_event:weekly",
+     "metrics": [
+      {
+       "id": "1",
+       "type": "max",
+       "field": "ls_glpi_open",
+       "meta": {},
+       "settings": {},
+       "alias": ""
+      }
+     ],
+     "bucketAggs": [
+      {
+       "id": "2",
+       "type": "date_histogram",
+       "field": "timestamp",
+       "settings": {
+        "interval": "auto",
+        "min_doc_count": 0
+       }
+      }
+     ],
+     "timeField": "timestamp",
+     "datasource": {
+      "type": "elasticsearch",
+      "uid": "eg242vho5o45cc"
+     }
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "color": {
+      "mode": "thresholds"
+     },
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "blue",
+        "value": null
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "colorMode": "background",
+    "graphMode": "none",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "textMode": "auto",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ],
+     "fields": "",
+     "values": false
+    }
+   }
+  },
+  {
+   "id": 3,
+   "type": "stat",
+   "title": "Закрыто за неделю",
+   "datasource": {
+    "type": "elasticsearch",
+    "uid": "eg242vho5o45cc"
+   },
+   "gridPos": {
+    "h": 6,
+    "w": 6,
+    "x": 12,
+    "y": 1
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "query": "ls_event:weekly",
+     "metrics": [
+      {
+       "id": "1",
+       "type": "max",
+       "field": "ls_glpi_closed_week",
+       "meta": {},
+       "settings": {},
+       "alias": ""
+      }
+     ],
+     "bucketAggs": [
+      {
+       "id": "2",
+       "type": "date_histogram",
+       "field": "timestamp",
+       "settings": {
+        "interval": "auto",
+        "min_doc_count": 0
+       }
+      }
+     ],
+     "timeField": "timestamp",
+     "datasource": {
+      "type": "elasticsearch",
+      "uid": "eg242vho5o45cc"
+     }
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "color": {
+      "mode": "thresholds"
+     },
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "blue",
+        "value": null
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "colorMode": "background",
+    "graphMode": "none",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "textMode": "auto",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ],
+     "fields": "",
+     "values": false
+    }
+   }
+  },
+  {
+   "id": 4,
+   "type": "stat",
+   "title": "Активных блокировок",
+   "datasource": {
+    "type": "elasticsearch",
+    "uid": "eg242vho5o45cc"
+   },
+   "gridPos": {
+    "h": 6,
+    "w": 6,
+    "x": 18,
+    "y": 1
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "query": "ls_event:weekly",
+     "metrics": [
+      {
+       "id": "1",
+       "type": "max",
+       "field": "ls_bb_active",
+       "meta": {},
+       "settings": {},
+       "alias": ""
+      }
+     ],
+     "bucketAggs": [
+      {
+       "id": "2",
+       "type": "date_histogram",
+       "field": "timestamp",
+       "settings": {
+        "interval": "auto",
+        "min_doc_count": 0
+       }
+      }
+     ],
+     "timeField": "timestamp",
+     "datasource": {
+      "type": "elasticsearch",
+      "uid": "eg242vho5o45cc"
+     }
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "color": {
+      "mode": "thresholds"
+     },
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "blue",
+        "value": null
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "colorMode": "background",
+    "graphMode": "none",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "textMode": "auto",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ],
+     "fields": "",
+     "values": false
+    }
+   }
+  },
+  {
+   "id": 101,
+   "type": "row",
+   "title": "Динамика",
+   "collapsed": false,
+   "gridPos": {
+    "h": 1,
+    "w": 24,
+    "x": 0,
+    "y": 7
+   },
+   "panels": []
+  },
+  {
+   "id": 5,
+   "type": "timeseries",
+   "title": "Тикеты GLPI",
+   "datasource": {
+    "type": "elasticsearch",
+    "uid": "eg242vho5o45cc"
+   },
+   "description": "",
+   "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 0,
+    "y": 8
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "query": "ls_event:weekly",
+     "metrics": [
+      {
+       "id": "1",
+       "type": "max",
+       "field": "ls_glpi_open",
+       "meta": {},
+       "settings": {},
+       "alias": "открыто"
+      }
+     ],
+     "bucketAggs": [
+      {
+       "id": "2",
+       "type": "date_histogram",
+       "field": "timestamp",
+       "settings": {
+        "interval": "auto",
+        "min_doc_count": 0
+       }
+      }
+     ],
+     "timeField": "timestamp",
+     "datasource": {
+      "type": "elasticsearch",
+      "uid": "eg242vho5o45cc"
+     }
+    },
+    {
+     "refId": "B",
+     "query": "ls_event:weekly",
+     "metrics": [
+      {
+       "id": "1",
+       "type": "max",
+       "field": "ls_glpi_closed_week",
+       "meta": {},
+       "settings": {},
+       "alias": "закрыто за нед."
+      }
+     ],
+     "bucketAggs": [
+      {
+       "id": "2",
+       "type": "date_histogram",
+       "field": "timestamp",
+       "settings": {
+        "interval": "auto",
+        "min_doc_count": 0
+       }
+      }
+     ],
+     "timeField": "timestamp",
+     "datasource": {
+      "type": "elasticsearch",
+      "uid": "eg242vho5o45cc"
+     }
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "drawStyle": "line",
+      "fillOpacity": 15,
+      "lineWidth": 1.5,
+      "showPoints": "never",
+      "spanNulls": true,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "barWidthFactor": 0.6,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "smooth",
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "thresholdsStyle": {
+       "mode": "off"
+      },
+      "lineStyle": {
+       "fill": "solid"
+      },
+      "showValues": false
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "bottom",
+     "showLegend": true
+    },
+    "tooltip": {
+     "hideZeros": false,
+     "mode": "multi",
+     "sort": "desc"
+    }
+   }
+  },
+  {
+   "id": 6,
+   "type": "timeseries",
+   "title": "TicketBridge: тикеты и дополнения",
+   "datasource": {
+    "type": "elasticsearch",
+    "uid": "eg242vho5o45cc"
+   },
+   "description": "Корреляция: повторный алерт хоста за 30 минут идёт followup'ом в открытый тикет.",
+   "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 12,
+    "y": 8
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "query": "tool:ticketbridge AND tb_event:created",
+     "metrics": [
+      {
+       "id": "1",
+       "type": "count",
+       "alias": "новые тикеты"
+      }
+     ],
+     "bucketAggs": [
+      {
+       "id": "2",
+       "type": "date_histogram",
+       "field": "timestamp",
+       "settings": {
+        "interval": "auto",
+        "min_doc_count": 0
+       }
+      }
+     ],
+     "timeField": "timestamp",
+     "datasource": {
+      "type": "elasticsearch",
+      "uid": "eg242vho5o45cc"
+     },
+     "alias": "новые тикеты"
+    },
+    {
+     "refId": "B",
+     "query": "tool:ticketbridge AND tb_event:followup",
+     "metrics": [
+      {
+       "id": "1",
+       "type": "count",
+       "alias": "дополнения (корреляция)"
+      }
+     ],
+     "bucketAggs": [
+      {
+       "id": "2",
+       "type": "date_histogram",
+       "field": "timestamp",
+       "settings": {
+        "interval": "auto",
+        "min_doc_count": 0
+       }
+      }
+     ],
+     "timeField": "timestamp",
+     "datasource": {
+      "type": "elasticsearch",
+      "uid": "eg242vho5o45cc"
+     },
+     "alias": "дополнения (корреляция)"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "drawStyle": "bars",
+      "fillOpacity": 15,
+      "lineWidth": 1.5,
+      "showPoints": "never",
+      "spanNulls": true,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "barWidthFactor": 0.6,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "smooth",
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "thresholdsStyle": {
+       "mode": "off"
+      },
+      "lineStyle": {
+       "fill": "solid"
+      },
+      "showValues": false
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "bottom",
+     "showLegend": true
+    },
+    "tooltip": {
+     "hideZeros": false,
+     "mode": "multi",
+     "sort": "desc"
+    }
+   }
+  },
+  {
+   "id": 7,
+   "type": "timeseries",
+   "title": "BlockBoard: блокировки и снятия",
+   "datasource": {
+    "type": "elasticsearch",
+    "uid": "eg242vho5o45cc"
+   },
+   "description": "",
+   "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 0,
+    "y": 16
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "query": "tool:blockboard AND action:block",
+     "metrics": [
+      {
+       "id": "1",
+       "type": "count",
+       "alias": "блокировки"
+      }
+     ],
+     "bucketAggs": [
+      {
+       "id": "2",
+       "type": "date_histogram",
+       "field": "timestamp",
+       "settings": {
+        "interval": "auto",
+        "min_doc_count": 0
+       }
+      }
+     ],
+     "timeField": "timestamp",
+     "datasource": {
+      "type": "elasticsearch",
+      "uid": "eg242vho5o45cc"
+     },
+     "alias": "блокировки"
+    },
+    {
+     "refId": "B",
+     "query": "tool:blockboard AND action:unblock",
+     "metrics": [
+      {
+       "id": "1",
+       "type": "count",
+       "alias": "снятия"
+      }
+     ],
+     "bucketAggs": [
+      {
+       "id": "2",
+       "type": "date_histogram",
+       "field": "timestamp",
+       "settings": {
+        "interval": "auto",
+        "min_doc_count": 0
+       }
+      }
+     ],
+     "timeField": "timestamp",
+     "datasource": {
+      "type": "elasticsearch",
+      "uid": "eg242vho5o45cc"
+     },
+     "alias": "снятия"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "drawStyle": "bars",
+      "fillOpacity": 15,
+      "lineWidth": 1.5,
+      "showPoints": "never",
+      "spanNulls": true,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "barWidthFactor": 0.6,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "smooth",
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "thresholdsStyle": {
+       "mode": "off"
+      },
+      "lineStyle": {
+       "fill": "solid"
+      },
+      "showValues": false
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "bottom",
+     "showLegend": true
+    },
+    "tooltip": {
+     "hideZeros": false,
+     "mode": "multi",
+     "sort": "desc"
+    }
+   }
+  },
+  {
+   "id": 8,
+   "type": "logs",
+   "title": "Последние блокировки BlockBoard",
+   "datasource": {
+    "type": "elasticsearch",
+    "uid": "eg242vho5o45cc"
+   },
+   "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 12,
+    "y": 16
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "query": "tool:blockboard",
+     "timeField": "timestamp",
+     "metrics": [
+      {
+       "id": "1",
+       "type": "logs"
+      }
+     ],
+     "bucketAggs": [
+      {
+       "id": "2",
+       "type": "date_histogram",
+       "field": "timestamp",
+       "settings": {
+        "interval": "auto"
+       }
+      }
+     ],
+     "datasource": {
+      "type": "elasticsearch",
+      "uid": "eg242vho5o45cc"
+     }
+    }
+   ],
+   "options": {
+    "showLabels": false,
+    "showTime": true,
+    "sortOrder": "Descending",
+    "wrapLogMessage": true,
+    "prettifyLogMessage": false,
+    "enableLogDetails": true,
+    "dedupStrategy": "none"
+   }
+  },
+  {
+   "id": 9,
+   "type": "timeseries",
+   "title": "Алерты Graylog по приоритетам",
+   "datasource": {
+    "type": "elasticsearch",
+    "uid": "eg242vho5o45cc"
+   },
+   "description": "События из индексов gl-events_* (источник Graylog Alerts).",
+   "gridPos": {
+    "h": 8,
+    "w": 24,
+    "x": 0,
+    "y": 24
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "query": "alert:true AND priority:3",
+     "metrics": [
+      {
+       "id": "1",
+       "type": "count",
+       "alias": "high"
+      }
+     ],
+     "bucketAggs": [
+      {
+       "id": "2",
+       "type": "date_histogram",
+       "field": "timestamp",
+       "settings": {
+        "interval": "auto",
+        "min_doc_count": 0
+       }
+      }
+     ],
+     "timeField": "timestamp",
+     "datasource": {
+      "type": "elasticsearch",
+      "uid": "eg27m552vbgn4e"
+     },
+     "alias": "high"
+    },
+    {
+     "refId": "B",
+     "query": "alert:true AND priority:2",
+     "metrics": [
+      {
+       "id": "1",
+       "type": "count",
+       "alias": "medium"
+      }
+     ],
+     "bucketAggs": [
+      {
+       "id": "2",
+       "type": "date_histogram",
+       "field": "timestamp",
+       "settings": {
+        "interval": "auto",
+        "min_doc_count": 0
+       }
+      }
+     ],
+     "timeField": "timestamp",
+     "datasource": {
+      "type": "elasticsearch",
+      "uid": "eg27m552vbgn4e"
+     },
+     "alias": "medium"
+    },
+    {
+     "refId": "C",
+     "query": "alert:true AND priority:1",
+     "metrics": [
+      {
+       "id": "1",
+       "type": "count",
+       "alias": "low"
+      }
+     ],
+     "bucketAggs": [
+      {
+       "id": "2",
+       "type": "date_histogram",
+       "field": "timestamp",
+       "settings": {
+        "interval": "auto",
+        "min_doc_count": 0
+       }
+      }
+     ],
+     "timeField": "timestamp",
+     "datasource": {
+      "type": "elasticsearch",
+      "uid": "eg27m552vbgn4e"
+     },
+     "alias": "low"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "drawStyle": "bars",
+      "fillOpacity": 15,
+      "lineWidth": 1.5,
+      "showPoints": "never",
+      "spanNulls": true,
+      "stacking": {
+       "group": "A",
+       "mode": "normal"
+      },
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "barWidthFactor": 0.6,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "smooth",
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "thresholdsStyle": {
+       "mode": "off"
+      },
+      "lineStyle": {
+       "fill": "solid"
+      },
+      "showValues": false
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "bottom",
+     "showLegend": true
+    },
+    "tooltip": {
+     "hideZeros": false,
+     "mode": "multi",
+     "sort": "desc"
+    }
+   }
+  }
+ ]
+}

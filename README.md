@@ -1,6 +1,6 @@
 # Grafana в домашней лаборатории
 
-Опыт сборки единой панели наблюдения для домашней лаборатории на RED OS: метрики, логи, события безопасности и состояние сервисов на одном экране. Здесь лежат 13 готовых дашбордов, скрипты, которые понадобились по дороге, и разбор граблей.
+Опыт сборки единой панели наблюдения для домашней лаборатории на RED OS: метрики, логи, события безопасности и состояние сервисов на одном экране. Здесь лежат 15 готовых дашбордов, правила алертинга, скрипты, которые понадобились по дороге, и разбор граблей.
 
 Репозиторий дополняет [Graylog_streams-alerts](https://github.com/ArsIS-02/Graylog_streams-alerts) (сбор логов и алерты) и [auditd-rules-redos](https://github.com/ArsIS-02/auditd-rules-redos) (правила auditd). Graylog остаётся центром логов, Grafana собирает всё в одну картину.
 
@@ -57,6 +57,18 @@
 | Логи | Логи Graylog | `ds-graylog` |
 | Логи | Логи (Loki) | `ds-logs` |
 | Безопасность | Безопасность | `ds-security` |
+| SOC | Зрелость лаборатории (Lab Score) | `ds-labscore` |
+| SOC | Реагирование (SOC) | `ds-response` |
+
+Дашборды SOC читают метрики из событий `tool=labscore`, `tool=ticketbridge` и `tool:blockboard` в OpenSearch Graylog: рост числа детектов, покрытие рунбуками HomeWiki, техники MITRE, тикеты GLPI, корреляция инцидентов, блокировки IOC. На обоих включены аннотации алертов Graylog (`gl-events_*`) — срабатывания правил видны прямо на графиках.
+
+## Алертинг Grafana
+
+Помимо алертов Graylog настроен собственный контур Grafana поверх Prometheus
+([docs/06-alerting.md](docs/06-alerting.md)): хост молчит, веб-сервис не
+отвечает, диск заполнен, контейнер пропал. Оповещения уходят в Alertmanager
+и появляются на дашборде «Алерты». Экспорт правил, каналов и политик — в
+`provisioning/`.
 
 Нодовый дашборд Node Exporter Full (grafana.com, id 1860) в репозиторий не включён: он стоит рядом как справочный, а свои дашборды написаны под наши метки и русские названия.
 
@@ -80,6 +92,7 @@ sed -i 's/bg23rxlukphc0f/<ваш-uid-prometheus>/g' dashboards/*/*.json
 - [docs/03-annotations.md](docs/03-annotations.md) — события Graylog поверх графиков
 - [docs/04-zabbix.md](docs/04-zabbix.md) — как правильно подключить Zabbix и настроить пользователя `grafana` (без него панели Zabbix пусты)
 - [docs/05-pitfalls.md](docs/05-pitfalls.md) — грабли и решения
+- [docs/06-alerting.md](docs/06-alerting.md) — свой алертинг Grafana: правила Prometheus, Alertmanager, provisioning
 
 ## Скрипты
 

@@ -1,0 +1,21 @@
+[
+ {
+  "uid": "cg3sxqjoq4idcc",
+  "name": "Alertmanager",
+  "type": "prometheus-alertmanager",
+  "settings": {
+   "url": "http://alertmanager:9093"
+  },
+  "disableResolveMessage": false,
+  "provenance": "api"
+ },
+ {
+  "uid": "",
+  "name": "email receiver",
+  "type": "email",
+  "settings": {
+   "addresses": "<example@email.com>"
+  },
+  "disableResolveMessage": false
+ }
+]

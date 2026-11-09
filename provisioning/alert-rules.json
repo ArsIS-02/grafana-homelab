@@ -1,0 +1,454 @@
+[
+ {
+  "id": 1,
+  "uid": "gr-hostdown",
+  "orgID": 1,
+  "folderUID": "dg27mgh7q28zkf",
+  "ruleGroup": "infrastructure",
+  "title": "Инфра: хост не отвечает (node_exporter)",
+  "condition": "C",
+  "data": [
+   {
+    "refId": "A",
+    "queryType": "",
+    "relativeTimeRange": {
+     "from": 600,
+     "to": 0
+    },
+    "datasourceUid": "bg23rxlukphc0f",
+    "model": {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "bg23rxlukphc0f"
+     },
+     "editorMode": "code",
+     "expr": "1 - max(up{job=\"node_exporters\"}) by (instance)",
+     "instant": false,
+     "intervalMs": 15000,
+     "legendFormat": "__auto",
+     "maxDataPoints": 43200,
+     "range": true,
+     "refId": "A"
+    }
+   },
+   {
+    "refId": "B",
+    "queryType": "",
+    "relativeTimeRange": {
+     "from": 0,
+     "to": 0
+    },
+    "datasourceUid": "-100",
+    "model": {
+     "datasource": {
+      "type": "__expr__",
+      "uid": "-100"
+     },
+     "expression": "A",
+     "intervalMs": 15000,
+     "maxDataPoints": 43200,
+     "reducer": "last",
+     "refId": "B",
+     "type": "reduce"
+    }
+   },
+   {
+    "refId": "C",
+    "queryType": "",
+    "relativeTimeRange": {
+     "from": 0,
+     "to": 0
+    },
+    "datasourceUid": "-100",
+    "model": {
+     "conditions": [
+      {
+       "evaluator": {
+        "params": [
+         0.5
+        ],
+        "type": "gt"
+       },
+       "operator": {
+        "type": "and"
+       },
+       "query": {
+        "params": [
+         "C"
+        ]
+       },
+       "reducer": {
+        "type": "last"
+       },
+       "type": "query"
+      }
+     ],
+     "datasource": {
+      "type": "__expr__",
+      "uid": "-100"
+     },
+     "expression": "B",
+     "intervalMs": 15000,
+     "maxDataPoints": 43200,
+     "refId": "C",
+     "type": "threshold"
+    }
+   }
+  ],
+  "updated": "2026-11-09T18:08:46Z",
+  "noDataState": "NoData",
+  "execErrState": "Error",
+  "for": "5m",
+  "keep_firing_for": "0s",
+  "annotations": {
+   "summary": "node_exporter на {{ $labels.instance }} недоступен больше 5 минут"
+  },
+  "labels": {
+   "severity": "critical",
+   "source": "grafana"
+  },
+  "provenance": "api",
+  "isPaused": false,
+  "notification_settings": null,
+  "record": null
+ },
+ {
+  "id": 2,
+  "uid": "gr-blackbox",
+  "orgID": 1,
+  "folderUID": "dg27mgh7q28zkf",
+  "ruleGroup": "infrastructure",
+  "title": "Инфра: веб-сервис недоступен (blackbox)",
+  "condition": "C",
+  "data": [
+   {
+    "refId": "A",
+    "queryType": "",
+    "relativeTimeRange": {
+     "from": 600,
+     "to": 0
+    },
+    "datasourceUid": "bg23rxlukphc0f",
+    "model": {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "bg23rxlukphc0f"
+     },
+     "editorMode": "code",
+     "expr": "1 - max(probe_success{job=\"blackbox_http\"}) by (instance)",
+     "instant": false,
+     "intervalMs": 15000,
+     "legendFormat": "__auto",
+     "maxDataPoints": 43200,
+     "range": true,
+     "refId": "A"
+    }
+   },
+   {
+    "refId": "B",
+    "queryType": "",
+    "relativeTimeRange": {
+     "from": 0,
+     "to": 0
+    },
+    "datasourceUid": "-100",
+    "model": {
+     "datasource": {
+      "type": "__expr__",
+      "uid": "-100"
+     },
+     "expression": "A",
+     "intervalMs": 15000,
+     "maxDataPoints": 43200,
+     "reducer": "last",
+     "refId": "B",
+     "type": "reduce"
+    }
+   },
+   {
+    "refId": "C",
+    "queryType": "",
+    "relativeTimeRange": {
+     "from": 0,
+     "to": 0
+    },
+    "datasourceUid": "-100",
+    "model": {
+     "conditions": [
+      {
+       "evaluator": {
+        "params": [
+         0.5
+        ],
+        "type": "gt"
+       },
+       "operator": {
+        "type": "and"
+       },
+       "query": {
+        "params": [
+         "C"
+        ]
+       },
+       "reducer": {
+        "type": "last"
+       },
+       "type": "query"
+      }
+     ],
+     "datasource": {
+      "type": "__expr__",
+      "uid": "-100"
+     },
+     "expression": "B",
+     "intervalMs": 15000,
+     "maxDataPoints": 43200,
+     "refId": "C",
+     "type": "threshold"
+    }
+   }
+  ],
+  "updated": "2026-11-09T18:08:46Z",
+  "noDataState": "NoData",
+  "execErrState": "Error",
+  "for": "10m",
+  "keep_firing_for": "0s",
+  "annotations": {
+   "summary": "Сервис {{ $labels.instance }} не отвечает на HTTP-пробу больше 10 минут"
+  },
+  "labels": {
+   "severity": "warning",
+   "source": "grafana"
+  },
+  "provenance": "api",
+  "isPaused": false,
+  "notification_settings": null,
+  "record": null
+ },
+ {
+  "id": 3,
+  "uid": "gr-disklow",
+  "orgID": 1,
+  "folderUID": "dg27mgh7q28zkf",
+  "ruleGroup": "infrastructure",
+  "title": "Инфра: диск заполнен > 85%",
+  "condition": "C",
+  "data": [
+   {
+    "refId": "A",
+    "queryType": "",
+    "relativeTimeRange": {
+     "from": 600,
+     "to": 0
+    },
+    "datasourceUid": "bg23rxlukphc0f",
+    "model": {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "bg23rxlukphc0f"
+     },
+     "editorMode": "code",
+     "expr": "1 - max(node_filesystem_avail_bytes{mountpoint=\"/\",fstype!=\"tmpfs\"}) by (instance) / max(node_filesystem_size_bytes{mountpoint=\"/\",fstype!=\"tmpfs\"}) by (instance)",
+     "instant": false,
+     "intervalMs": 15000,
+     "legendFormat": "__auto",
+     "maxDataPoints": 43200,
+     "range": true,
+     "refId": "A"
+    }
+   },
+   {
+    "refId": "B",
+    "queryType": "",
+    "relativeTimeRange": {
+     "from": 0,
+     "to": 0
+    },
+    "datasourceUid": "-100",
+    "model": {
+     "datasource": {
+      "type": "__expr__",
+      "uid": "-100"
+     },
+     "expression": "A",
+     "intervalMs": 15000,
+     "maxDataPoints": 43200,
+     "reducer": "last",
+     "refId": "B",
+     "type": "reduce"
+    }
+   },
+   {
+    "refId": "C",
+    "queryType": "",
+    "relativeTimeRange": {
+     "from": 0,
+     "to": 0
+    },
+    "datasourceUid": "-100",
+    "model": {
+     "conditions": [
+      {
+       "evaluator": {
+        "params": [
+         0.85
+        ],
+        "type": "gt"
+       },
+       "operator": {
+        "type": "and"
+       },
+       "query": {
+        "params": [
+         "C"
+        ]
+       },
+       "reducer": {
+        "type": "last"
+       },
+       "type": "query"
+      }
+     ],
+     "datasource": {
+      "type": "__expr__",
+      "uid": "-100"
+     },
+     "expression": "B",
+     "intervalMs": 15000,
+     "maxDataPoints": 43200,
+     "refId": "C",
+     "type": "threshold"
+    }
+   }
+  ],
+  "updated": "2026-11-09T18:09:05Z",
+  "noDataState": "NoData",
+  "execErrState": "Error",
+  "for": "30m",
+  "keep_firing_for": "0s",
+  "annotations": {
+   "summary": "На {{ $labels.instance }} свободно меньше 15% корневого раздела"
+  },
+  "labels": {
+   "severity": "warning",
+   "source": "grafana"
+  },
+  "provenance": "api",
+  "isPaused": false,
+  "notification_settings": null,
+  "record": null
+ },
+ {
+  "id": 4,
+  "uid": "gr-container",
+  "orgID": 1,
+  "folderUID": "dg27mgh7q28zkf",
+  "ruleGroup": "infrastructure",
+  "title": "Инфра: контейнер молчит > 15 минут",
+  "condition": "C",
+  "data": [
+   {
+    "refId": "A",
+    "queryType": "",
+    "relativeTimeRange": {
+     "from": 600,
+     "to": 0
+    },
+    "datasourceUid": "bg23rxlukphc0f",
+    "model": {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "bg23rxlukphc0f"
+     },
+     "editorMode": "code",
+     "expr": "(time() - max(container_last_seen{name!=\"\",id=~\"/docker/.*|/system.slice/.*\"}) by (name)) / 60",
+     "instant": false,
+     "intervalMs": 15000,
+     "legendFormat": "__auto",
+     "maxDataPoints": 43200,
+     "range": true,
+     "refId": "A"
+    }
+   },
+   {
+    "refId": "B",
+    "queryType": "",
+    "relativeTimeRange": {
+     "from": 0,
+     "to": 0
+    },
+    "datasourceUid": "-100",
+    "model": {
+     "datasource": {
+      "type": "__expr__",
+      "uid": "-100"
+     },
+     "expression": "A",
+     "intervalMs": 15000,
+     "maxDataPoints": 43200,
+     "reducer": "last",
+     "refId": "B",
+     "type": "reduce"
+    }
+   },
+   {
+    "refId": "C",
+    "queryType": "",
+    "relativeTimeRange": {
+     "from": 0,
+     "to": 0
+    },
+    "datasourceUid": "-100",
+    "model": {
+     "conditions": [
+      {
+       "evaluator": {
+        "params": [
+         15
+        ],
+        "type": "gt"
+       },
+       "operator": {
+        "type": "and"
+       },
+       "query": {
+        "params": [
+         "C"
+        ]
+       },
+       "reducer": {
+        "type": "last"
+       },
+       "type": "query"
+      }
+     ],
+     "datasource": {
+      "type": "__expr__",
+      "uid": "-100"
+     },
+     "expression": "B",
+     "intervalMs": 15000,
+     "maxDataPoints": 43200,
+     "refId": "C",
+     "type": "threshold"
+    }
+   }
+  ],
+  "updated": "2026-11-09T18:09:06Z",
+  "noDataState": "OK",
+  "execErrState": "Error",
+  "for": "15m",
+  "keep_firing_for": "0s",
+  "annotations": {
+   "summary": "Контейнер {{ $labels.name }} не виден cAdvisor больше 15 минут"
+  },
+  "labels": {
+   "severity": "warning",
+   "source": "grafana"
+  },
+  "provenance": "api",
+  "isPaused": false,
+  "notification_settings": null,
+  "record": null
+ }
+]
