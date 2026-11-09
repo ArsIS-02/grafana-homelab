@@ -12,7 +12,7 @@
  "graphTooltip": 1,
  "refresh": "1h",
  "time": {
-  "from": "now-90d",
+  "from": "now-30d",
   "to": "now"
  },
  "annotations": {
@@ -477,8 +477,8 @@
       "drawStyle": "line",
       "fillOpacity": 15,
       "lineWidth": 1.5,
-      "showPoints": "never",
-      "spanNulls": true,
+      "showPoints": "always",
+      "spanNulls": 604800000,
       "stacking": {
        "group": "A",
        "mode": "none"
@@ -545,7 +545,7 @@
    "targets": [
     {
      "refId": "A",
-     "query": "tool:ticketbridge AND tb_event:created",
+     "query": "tool:ticketbridge AND tb_event:ticket",
      "metrics": [
       {
        "id": "1",
@@ -610,8 +610,8 @@
       "drawStyle": "bars",
       "fillOpacity": 15,
       "lineWidth": 1.5,
-      "showPoints": "never",
-      "spanNulls": true,
+      "showPoints": "always",
+      "spanNulls": 604800000,
       "stacking": {
        "group": "A",
        "mode": "none"
@@ -743,8 +743,8 @@
       "drawStyle": "bars",
       "fillOpacity": 15,
       "lineWidth": 1.5,
-      "showPoints": "never",
-      "spanNulls": true,
+      "showPoints": "always",
+      "spanNulls": 604800000,
       "stacking": {
        "group": "A",
        "mode": "none"
@@ -955,8 +955,8 @@
       "drawStyle": "bars",
       "fillOpacity": 15,
       "lineWidth": 1.5,
-      "showPoints": "never",
-      "spanNulls": true,
+      "showPoints": "always",
+      "spanNulls": 604800000,
       "stacking": {
        "group": "A",
        "mode": "normal"
