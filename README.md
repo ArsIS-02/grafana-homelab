@@ -4,6 +4,14 @@
 
 Репозиторий дополняет [Graylog_streams-alerts](https://github.com/ArsIS-02/Graylog_streams-alerts) (сбор логов и алерты) и [auditd-rules-redos](https://github.com/ArsIS-02/auditd-rules-redos) (правила auditd). Graylog остаётся центром логов, Grafana собирает всё в одну картину.
 
+## Скриншоты
+
+![Обзор лаборатории](docs/screenshots/overview.png)
+
+![Зрелость лаборатории (Lab Score)](docs/screenshots/labscore.png)
+
+![Реагирование (SOC)](docs/screenshots/soc-response.png)
+
 ## Что внутри
 
 | Источник | Что берём | Где в Grafana |
