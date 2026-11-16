@@ -19,6 +19,7 @@
       }
     ]
   },
+  "id": null,
   "panels": [
     {
       "datasource": {
@@ -441,5 +442,6 @@
   },
   "timezone": "browser",
   "title": "Обзор лаборатории",
-  "uid": "ds-overview"
+  "uid": "ds-overview",
+  "version": 2
 }

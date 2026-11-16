@@ -35,6 +35,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
+  "id": null,
   "liveNow": false,
   "panels": [
     {
@@ -1054,5 +1055,6 @@
   },
   "timezone": "browser",
   "title": "Безопасность",
-  "uid": "ds-security"
+  "uid": "ds-security",
+  "version": 10
 }

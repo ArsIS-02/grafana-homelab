@@ -35,6 +35,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
+  "id": null,
   "liveNow": false,
   "panels": [
     {
@@ -2405,5 +2406,6 @@
   },
   "timezone": "browser",
   "title": "Детали хоста",
-  "uid": "ds-node"
+  "uid": "ds-node",
+  "version": 12
 }

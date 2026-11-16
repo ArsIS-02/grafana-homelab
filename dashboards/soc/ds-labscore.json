@@ -1,1121 +1,1122 @@
 {
- "uid": "ds-labscore",
- "title": "Зрелость лаборатории (Lab Score)",
- "description": "Еженедельные метрики зрелости из событий tool=labscore: рост детектов, покрытие рунбуками HomeWiki, техники MITRE, блокировки BlockBoard, тикеты GLPI.",
- "tags": [
-  "homelab",
-  "labscore",
-  "graylog"
- ],
- "timezone": "browser",
- "editable": true,
- "graphTooltip": 1,
- "refresh": "1h",
- "time": {
-  "from": "now-30d",
-  "to": "now"
- },
- "annotations": {
-  "list": [
-   {
-    "name": "Алерты Graylog",
-    "datasource": {
-     "type": "elasticsearch",
-     "uid": "eg27m552vbgn4e"
-    },
-    "enable": true,
-    "iconColor": "#FA6400",
-    "hide": false,
-    "builtIn": 0,
-    "query": {
-     "query": "alert:true",
-     "refId": "Anno",
-     "timeField": "timestamp",
-     "textField": "message",
-     "tagsField": "priority"
-    },
-    "type": "dashboard"
-   }
-  ]
- },
- "links": [],
- "schemaVersion": 41,
- "version": 0,
- "fiscalYearStartMonth": 0,
- "weekStart": "",
- "liveNow": false,
- "templating": {
-  "list": []
- },
- "panels": [
-  {
-   "id": 100,
-   "type": "row",
-   "title": "Сейчас (последний еженедельный отчёт Lab Score)",
-   "collapsed": false,
-   "gridPos": {
-    "h": 1,
-    "w": 24,
-    "x": 0,
-    "y": 0
-   },
-   "panels": []
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 0,
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "eg27m552vbgn4e"
+        },
+        "enable": true,
+        "hide": false,
+        "iconColor": "#FA6400",
+        "name": "Алерты Graylog",
+        "query": {
+          "query": "alert:true",
+          "refId": "Anno",
+          "tagsField": "priority",
+          "textField": "message",
+          "timeField": "timestamp"
+        },
+        "type": "dashboard"
+      }
+    ]
   },
-  {
-   "id": 1,
-   "type": "stat",
-   "title": "Правил детектирования",
-   "datasource": {
-    "type": "elasticsearch",
-    "uid": "eg242vho5o45cc"
-   },
-   "gridPos": {
-    "h": 6,
-    "w": 4,
-    "x": 0,
-    "y": 1
-   },
-   "targets": [
+  "description": "Еженедельные метрики зрелости из событий tool=labscore: рост детектов, покрытие рунбуками HomeWiki, техники MITRE, блокировки BlockBoard, тикеты GLPI.",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
     {
-     "refId": "A",
-     "query": "ls_event:weekly",
-     "metrics": [
-      {
-       "id": "1",
-       "type": "max",
-       "field": "ls_rules",
-       "meta": {},
-       "settings": {},
-       "alias": ""
-      }
-     ],
-     "bucketAggs": [
-      {
-       "id": "2",
-       "type": "date_histogram",
-       "field": "timestamp",
-       "settings": {
-        "interval": "auto",
-        "min_doc_count": 0
-       }
-      }
-     ],
-     "timeField": "timestamp",
-     "datasource": {
-      "type": "elasticsearch",
-      "uid": "eg242vho5o45cc"
-     }
-    }
-   ],
-   "fieldConfig": {
-    "defaults": {
-     "unit": "short",
-     "color": {
-      "mode": "thresholds"
-     },
-     "thresholds": {
-      "mode": "absolute",
-      "steps": [
-       {
-        "color": "blue",
-        "value": null
-       }
-      ]
-     }
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 100,
+      "panels": [],
+      "title": "Сейчас (последний еженедельный отчёт Lab Score)",
+      "type": "row"
     },
-    "overrides": []
-   },
-   "options": {
-    "colorMode": "background",
-    "graphMode": "none",
-    "justifyMode": "auto",
-    "orientation": "auto",
-    "textMode": "auto",
-    "reduceOptions": {
-     "calcs": [
-      "lastNotNull"
-     ],
-     "fields": "",
-     "values": false
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "eg242vho5o45cc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 0,
+        "y": 1
+      },
+      "id": 1,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "eg242vho5o45cc"
+          },
+          "metrics": [
+            {
+              "alias": "",
+              "field": "ls_rules",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "max"
+            }
+          ],
+          "query": "ls_event:weekly",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Правил детектирования",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "eg242vho5o45cc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 4,
+        "y": 1
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "eg242vho5o45cc"
+          },
+          "metrics": [
+            {
+              "alias": "",
+              "field": "ls_alerts_week",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "max"
+            }
+          ],
+          "query": "ls_event:weekly",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Срабатываний за неделю",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "eg242vho5o45cc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 8,
+        "y": 1
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "eg242vho5o45cc"
+          },
+          "metrics": [
+            {
+              "alias": "",
+              "field": "ls_wiki_pct",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "max"
+            }
+          ],
+          "query": "ls_event:weekly",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Рунбуки HomeWiki, %",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "eg242vho5o45cc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 12,
+        "y": 1
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "eg242vho5o45cc"
+          },
+          "metrics": [
+            {
+              "alias": "",
+              "field": "ls_techniques",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "max"
+            }
+          ],
+          "query": "ls_event:weekly",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Техник MITRE ATT&CK",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "eg242vho5o45cc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 16,
+        "y": 1
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "eg242vho5o45cc"
+          },
+          "metrics": [
+            {
+              "alias": "",
+              "field": "ls_bb_active",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "max"
+            }
+          ],
+          "query": "ls_event:weekly",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Активных блокировок",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "eg242vho5o45cc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 20,
+        "y": 1
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "eg242vho5o45cc"
+          },
+          "metrics": [
+            {
+              "alias": "",
+              "field": "ls_glpi_open",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "max"
+            }
+          ],
+          "query": "ls_event:weekly",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Открытых тикетов GLPI",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 101,
+      "panels": [],
+      "title": "Динамика по еженедельным отчётам",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "eg242vho5o45cc"
+      },
+      "description": "Сколько Event Definitions в Graylog на момент отчёта.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1.5,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "showValues": false,
+            "spanNulls": 604800000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "eg242vho5o45cc"
+          },
+          "metrics": [
+            {
+              "alias": "правил",
+              "field": "ls_rules",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "max"
+            }
+          ],
+          "query": "ls_event:weekly",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Рост детектов",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "eg242vho5o45cc"
+      },
+      "description": "Сколько раз правила сработали за 7 дней перед отчётом.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "bars",
+            "fillOpacity": 15,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1.5,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "showValues": false,
+            "spanNulls": 604800000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "eg242vho5o45cc"
+          },
+          "metrics": [
+            {
+              "alias": "срабатываний",
+              "field": "ls_alerts_week",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "max"
+            }
+          ],
+          "query": "ls_event:weekly",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Срабатывания в неделю",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "eg242vho5o45cc"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1.5,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "showValues": false,
+            "spanNulls": 604800000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "id": 9,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "eg242vho5o45cc"
+          },
+          "metrics": [
+            {
+              "alias": "рынбуки, %",
+              "field": "ls_wiki_pct",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "max"
+            }
+          ],
+          "query": "ls_event:weekly",
+          "refId": "A",
+          "timeField": "timestamp"
+        },
+        {
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "eg242vho5o45cc"
+          },
+          "metrics": [
+            {
+              "alias": "техник MITRE",
+              "field": "ls_techniques",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "max"
+            }
+          ],
+          "query": "ls_event:weekly",
+          "refId": "B",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Покрытие рунбуками и MITRE",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "eg242vho5o45cc"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1.5,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "showValues": false,
+            "spanNulls": 604800000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "id": 10,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "eg242vho5o45cc"
+          },
+          "metrics": [
+            {
+              "alias": "активных",
+              "field": "ls_bb_active",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "max"
+            }
+          ],
+          "query": "ls_event:weekly",
+          "refId": "A",
+          "timeField": "timestamp"
+        },
+        {
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "eg242vho5o45cc"
+          },
+          "metrics": [
+            {
+              "alias": "добавлено за нед.",
+              "field": "ls_bb_added_week",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "max"
+            }
+          ],
+          "query": "ls_event:weekly",
+          "refId": "B",
+          "timeField": "timestamp"
+        },
+        {
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "eg242vho5o45cc"
+          },
+          "metrics": [
+            {
+              "alias": "снято за нед.",
+              "field": "ls_bb_removed_week",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "max"
+            }
+          ],
+          "query": "ls_event:weekly",
+          "refId": "C",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Блокировки BlockBoard",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "eg242vho5o45cc"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 24
+      },
+      "id": 11,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showLabels": false,
+        "showTime": true,
+        "sortOrder": "Descending",
+        "wrapLogMessage": true
+      },
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "eg242vho5o45cc"
+          },
+          "metrics": [
+            {
+              "id": "1",
+              "type": "logs"
+            }
+          ],
+          "query": "tool:labscore",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "События Lab Score (weekly + monthly PDF)",
+      "type": "logs"
     }
-   }
+  ],
+  "refresh": "1h",
+  "schemaVersion": 41,
+  "tags": [
+    "homelab",
+    "labscore",
+    "graylog"
+  ],
+  "templating": {
+    "list": []
   },
-  {
-   "id": 2,
-   "type": "stat",
-   "title": "Срабатываний за неделю",
-   "datasource": {
-    "type": "elasticsearch",
-    "uid": "eg242vho5o45cc"
-   },
-   "gridPos": {
-    "h": 6,
-    "w": 4,
-    "x": 4,
-    "y": 1
-   },
-   "targets": [
-    {
-     "refId": "A",
-     "query": "ls_event:weekly",
-     "metrics": [
-      {
-       "id": "1",
-       "type": "max",
-       "field": "ls_alerts_week",
-       "meta": {},
-       "settings": {},
-       "alias": ""
-      }
-     ],
-     "bucketAggs": [
-      {
-       "id": "2",
-       "type": "date_histogram",
-       "field": "timestamp",
-       "settings": {
-        "interval": "auto",
-        "min_doc_count": 0
-       }
-      }
-     ],
-     "timeField": "timestamp",
-     "datasource": {
-      "type": "elasticsearch",
-      "uid": "eg242vho5o45cc"
-     }
-    }
-   ],
-   "fieldConfig": {
-    "defaults": {
-     "unit": "short",
-     "color": {
-      "mode": "thresholds"
-     },
-     "thresholds": {
-      "mode": "absolute",
-      "steps": [
-       {
-        "color": "blue",
-        "value": null
-       }
-      ]
-     }
-    },
-    "overrides": []
-   },
-   "options": {
-    "colorMode": "background",
-    "graphMode": "none",
-    "justifyMode": "auto",
-    "orientation": "auto",
-    "textMode": "auto",
-    "reduceOptions": {
-     "calcs": [
-      "lastNotNull"
-     ],
-     "fields": "",
-     "values": false
-    }
-   }
+  "time": {
+    "from": "now-30d",
+    "to": "now"
   },
-  {
-   "id": 3,
-   "type": "stat",
-   "title": "Рунбуки HomeWiki, %",
-   "datasource": {
-    "type": "elasticsearch",
-    "uid": "eg242vho5o45cc"
-   },
-   "gridPos": {
-    "h": 6,
-    "w": 4,
-    "x": 8,
-    "y": 1
-   },
-   "targets": [
-    {
-     "refId": "A",
-     "query": "ls_event:weekly",
-     "metrics": [
-      {
-       "id": "1",
-       "type": "max",
-       "field": "ls_wiki_pct",
-       "meta": {},
-       "settings": {},
-       "alias": ""
-      }
-     ],
-     "bucketAggs": [
-      {
-       "id": "2",
-       "type": "date_histogram",
-       "field": "timestamp",
-       "settings": {
-        "interval": "auto",
-        "min_doc_count": 0
-       }
-      }
-     ],
-     "timeField": "timestamp",
-     "datasource": {
-      "type": "elasticsearch",
-      "uid": "eg242vho5o45cc"
-     }
-    }
-   ],
-   "fieldConfig": {
-    "defaults": {
-     "unit": "percent",
-     "color": {
-      "mode": "thresholds"
-     },
-     "thresholds": {
-      "mode": "absolute",
-      "steps": [
-       {
-        "color": "blue",
-        "value": null
-       }
-      ]
-     }
-    },
-    "overrides": []
-   },
-   "options": {
-    "colorMode": "background",
-    "graphMode": "none",
-    "justifyMode": "auto",
-    "orientation": "auto",
-    "textMode": "auto",
-    "reduceOptions": {
-     "calcs": [
-      "lastNotNull"
-     ],
-     "fields": "",
-     "values": false
-    }
-   }
-  },
-  {
-   "id": 4,
-   "type": "stat",
-   "title": "Техник MITRE ATT&CK",
-   "datasource": {
-    "type": "elasticsearch",
-    "uid": "eg242vho5o45cc"
-   },
-   "gridPos": {
-    "h": 6,
-    "w": 4,
-    "x": 12,
-    "y": 1
-   },
-   "targets": [
-    {
-     "refId": "A",
-     "query": "ls_event:weekly",
-     "metrics": [
-      {
-       "id": "1",
-       "type": "max",
-       "field": "ls_techniques",
-       "meta": {},
-       "settings": {},
-       "alias": ""
-      }
-     ],
-     "bucketAggs": [
-      {
-       "id": "2",
-       "type": "date_histogram",
-       "field": "timestamp",
-       "settings": {
-        "interval": "auto",
-        "min_doc_count": 0
-       }
-      }
-     ],
-     "timeField": "timestamp",
-     "datasource": {
-      "type": "elasticsearch",
-      "uid": "eg242vho5o45cc"
-     }
-    }
-   ],
-   "fieldConfig": {
-    "defaults": {
-     "unit": "short",
-     "color": {
-      "mode": "thresholds"
-     },
-     "thresholds": {
-      "mode": "absolute",
-      "steps": [
-       {
-        "color": "blue",
-        "value": null
-       }
-      ]
-     }
-    },
-    "overrides": []
-   },
-   "options": {
-    "colorMode": "background",
-    "graphMode": "none",
-    "justifyMode": "auto",
-    "orientation": "auto",
-    "textMode": "auto",
-    "reduceOptions": {
-     "calcs": [
-      "lastNotNull"
-     ],
-     "fields": "",
-     "values": false
-    }
-   }
-  },
-  {
-   "id": 5,
-   "type": "stat",
-   "title": "Активных блокировок",
-   "datasource": {
-    "type": "elasticsearch",
-    "uid": "eg242vho5o45cc"
-   },
-   "gridPos": {
-    "h": 6,
-    "w": 4,
-    "x": 16,
-    "y": 1
-   },
-   "targets": [
-    {
-     "refId": "A",
-     "query": "ls_event:weekly",
-     "metrics": [
-      {
-       "id": "1",
-       "type": "max",
-       "field": "ls_bb_active",
-       "meta": {},
-       "settings": {},
-       "alias": ""
-      }
-     ],
-     "bucketAggs": [
-      {
-       "id": "2",
-       "type": "date_histogram",
-       "field": "timestamp",
-       "settings": {
-        "interval": "auto",
-        "min_doc_count": 0
-       }
-      }
-     ],
-     "timeField": "timestamp",
-     "datasource": {
-      "type": "elasticsearch",
-      "uid": "eg242vho5o45cc"
-     }
-    }
-   ],
-   "fieldConfig": {
-    "defaults": {
-     "unit": "short",
-     "color": {
-      "mode": "thresholds"
-     },
-     "thresholds": {
-      "mode": "absolute",
-      "steps": [
-       {
-        "color": "blue",
-        "value": null
-       }
-      ]
-     }
-    },
-    "overrides": []
-   },
-   "options": {
-    "colorMode": "background",
-    "graphMode": "none",
-    "justifyMode": "auto",
-    "orientation": "auto",
-    "textMode": "auto",
-    "reduceOptions": {
-     "calcs": [
-      "lastNotNull"
-     ],
-     "fields": "",
-     "values": false
-    }
-   }
-  },
-  {
-   "id": 6,
-   "type": "stat",
-   "title": "Открытых тикетов GLPI",
-   "datasource": {
-    "type": "elasticsearch",
-    "uid": "eg242vho5o45cc"
-   },
-   "gridPos": {
-    "h": 6,
-    "w": 4,
-    "x": 20,
-    "y": 1
-   },
-   "targets": [
-    {
-     "refId": "A",
-     "query": "ls_event:weekly",
-     "metrics": [
-      {
-       "id": "1",
-       "type": "max",
-       "field": "ls_glpi_open",
-       "meta": {},
-       "settings": {},
-       "alias": ""
-      }
-     ],
-     "bucketAggs": [
-      {
-       "id": "2",
-       "type": "date_histogram",
-       "field": "timestamp",
-       "settings": {
-        "interval": "auto",
-        "min_doc_count": 0
-       }
-      }
-     ],
-     "timeField": "timestamp",
-     "datasource": {
-      "type": "elasticsearch",
-      "uid": "eg242vho5o45cc"
-     }
-    }
-   ],
-   "fieldConfig": {
-    "defaults": {
-     "unit": "short",
-     "color": {
-      "mode": "thresholds"
-     },
-     "thresholds": {
-      "mode": "absolute",
-      "steps": [
-       {
-        "color": "blue",
-        "value": null
-       }
-      ]
-     }
-    },
-    "overrides": []
-   },
-   "options": {
-    "colorMode": "background",
-    "graphMode": "none",
-    "justifyMode": "auto",
-    "orientation": "auto",
-    "textMode": "auto",
-    "reduceOptions": {
-     "calcs": [
-      "lastNotNull"
-     ],
-     "fields": "",
-     "values": false
-    }
-   }
-  },
-  {
-   "id": 101,
-   "type": "row",
-   "title": "Динамика по еженедельным отчётам",
-   "collapsed": false,
-   "gridPos": {
-    "h": 1,
-    "w": 24,
-    "x": 0,
-    "y": 7
-   },
-   "panels": []
-  },
-  {
-   "id": 7,
-   "type": "timeseries",
-   "title": "Рост детектов",
-   "datasource": {
-    "type": "elasticsearch",
-    "uid": "eg242vho5o45cc"
-   },
-   "description": "Сколько Event Definitions в Graylog на момент отчёта.",
-   "gridPos": {
-    "h": 8,
-    "w": 12,
-    "x": 0,
-    "y": 8
-   },
-   "targets": [
-    {
-     "refId": "A",
-     "query": "ls_event:weekly",
-     "metrics": [
-      {
-       "id": "1",
-       "type": "max",
-       "field": "ls_rules",
-       "meta": {},
-       "settings": {},
-       "alias": "правил"
-      }
-     ],
-     "bucketAggs": [
-      {
-       "id": "2",
-       "type": "date_histogram",
-       "field": "timestamp",
-       "settings": {
-        "interval": "auto",
-        "min_doc_count": 0
-       }
-      }
-     ],
-     "timeField": "timestamp",
-     "datasource": {
-      "type": "elasticsearch",
-      "uid": "eg242vho5o45cc"
-     }
-    }
-   ],
-   "fieldConfig": {
-    "defaults": {
-     "unit": "short",
-     "color": {
-      "mode": "palette-classic"
-     },
-     "custom": {
-      "drawStyle": "line",
-      "fillOpacity": 15,
-      "lineWidth": 1.5,
-      "showPoints": "always",
-      "spanNulls": 604800000,
-      "stacking": {
-       "group": "A",
-       "mode": "none"
-      },
-      "axisPlacement": "auto",
-      "barAlignment": 0,
-      "barWidthFactor": 0.6,
-      "gradientMode": "none",
-      "hideFrom": {
-       "legend": false,
-       "tooltip": false,
-       "viz": false
-      },
-      "insertNulls": false,
-      "lineInterpolation": "smooth",
-      "pointSize": 5,
-      "scaleDistribution": {
-       "type": "linear"
-      },
-      "axisBorderShow": false,
-      "axisCenteredZero": false,
-      "axisColorMode": "text",
-      "axisLabel": "",
-      "thresholdsStyle": {
-       "mode": "off"
-      },
-      "lineStyle": {
-       "fill": "solid"
-      },
-      "showValues": false
-     }
-    },
-    "overrides": []
-   },
-   "options": {
-    "legend": {
-     "calcs": [],
-     "displayMode": "list",
-     "placement": "bottom",
-     "showLegend": true
-    },
-    "tooltip": {
-     "hideZeros": false,
-     "mode": "multi",
-     "sort": "desc"
-    }
-   }
-  },
-  {
-   "id": 8,
-   "type": "timeseries",
-   "title": "Срабатывания в неделю",
-   "datasource": {
-    "type": "elasticsearch",
-    "uid": "eg242vho5o45cc"
-   },
-   "description": "Сколько раз правила сработали за 7 дней перед отчётом.",
-   "gridPos": {
-    "h": 8,
-    "w": 12,
-    "x": 12,
-    "y": 8
-   },
-   "targets": [
-    {
-     "refId": "A",
-     "query": "ls_event:weekly",
-     "metrics": [
-      {
-       "id": "1",
-       "type": "max",
-       "field": "ls_alerts_week",
-       "meta": {},
-       "settings": {},
-       "alias": "срабатываний"
-      }
-     ],
-     "bucketAggs": [
-      {
-       "id": "2",
-       "type": "date_histogram",
-       "field": "timestamp",
-       "settings": {
-        "interval": "auto",
-        "min_doc_count": 0
-       }
-      }
-     ],
-     "timeField": "timestamp",
-     "datasource": {
-      "type": "elasticsearch",
-      "uid": "eg242vho5o45cc"
-     }
-    }
-   ],
-   "fieldConfig": {
-    "defaults": {
-     "unit": "short",
-     "color": {
-      "mode": "palette-classic"
-     },
-     "custom": {
-      "drawStyle": "bars",
-      "fillOpacity": 15,
-      "lineWidth": 1.5,
-      "showPoints": "always",
-      "spanNulls": 604800000,
-      "stacking": {
-       "group": "A",
-       "mode": "none"
-      },
-      "axisPlacement": "auto",
-      "barAlignment": 0,
-      "barWidthFactor": 0.6,
-      "gradientMode": "none",
-      "hideFrom": {
-       "legend": false,
-       "tooltip": false,
-       "viz": false
-      },
-      "insertNulls": false,
-      "lineInterpolation": "smooth",
-      "pointSize": 5,
-      "scaleDistribution": {
-       "type": "linear"
-      },
-      "axisBorderShow": false,
-      "axisCenteredZero": false,
-      "axisColorMode": "text",
-      "axisLabel": "",
-      "thresholdsStyle": {
-       "mode": "off"
-      },
-      "lineStyle": {
-       "fill": "solid"
-      },
-      "showValues": false
-     }
-    },
-    "overrides": []
-   },
-   "options": {
-    "legend": {
-     "calcs": [],
-     "displayMode": "list",
-     "placement": "bottom",
-     "showLegend": true
-    },
-    "tooltip": {
-     "hideZeros": false,
-     "mode": "multi",
-     "sort": "desc"
-    }
-   }
-  },
-  {
-   "id": 9,
-   "type": "timeseries",
-   "title": "Покрытие рунбуками и MITRE",
-   "datasource": {
-    "type": "elasticsearch",
-    "uid": "eg242vho5o45cc"
-   },
-   "description": "",
-   "gridPos": {
-    "h": 8,
-    "w": 12,
-    "x": 0,
-    "y": 16
-   },
-   "targets": [
-    {
-     "refId": "A",
-     "query": "ls_event:weekly",
-     "metrics": [
-      {
-       "id": "1",
-       "type": "max",
-       "field": "ls_wiki_pct",
-       "meta": {},
-       "settings": {},
-       "alias": "рынбуки, %"
-      }
-     ],
-     "bucketAggs": [
-      {
-       "id": "2",
-       "type": "date_histogram",
-       "field": "timestamp",
-       "settings": {
-        "interval": "auto",
-        "min_doc_count": 0
-       }
-      }
-     ],
-     "timeField": "timestamp",
-     "datasource": {
-      "type": "elasticsearch",
-      "uid": "eg242vho5o45cc"
-     }
-    },
-    {
-     "refId": "B",
-     "query": "ls_event:weekly",
-     "metrics": [
-      {
-       "id": "1",
-       "type": "max",
-       "field": "ls_techniques",
-       "meta": {},
-       "settings": {},
-       "alias": "техник MITRE"
-      }
-     ],
-     "bucketAggs": [
-      {
-       "id": "2",
-       "type": "date_histogram",
-       "field": "timestamp",
-       "settings": {
-        "interval": "auto",
-        "min_doc_count": 0
-       }
-      }
-     ],
-     "timeField": "timestamp",
-     "datasource": {
-      "type": "elasticsearch",
-      "uid": "eg242vho5o45cc"
-     }
-    }
-   ],
-   "fieldConfig": {
-    "defaults": {
-     "unit": "short",
-     "color": {
-      "mode": "palette-classic"
-     },
-     "custom": {
-      "drawStyle": "line",
-      "fillOpacity": 15,
-      "lineWidth": 1.5,
-      "showPoints": "always",
-      "spanNulls": 604800000,
-      "stacking": {
-       "group": "A",
-       "mode": "none"
-      },
-      "axisPlacement": "auto",
-      "barAlignment": 0,
-      "barWidthFactor": 0.6,
-      "gradientMode": "none",
-      "hideFrom": {
-       "legend": false,
-       "tooltip": false,
-       "viz": false
-      },
-      "insertNulls": false,
-      "lineInterpolation": "smooth",
-      "pointSize": 5,
-      "scaleDistribution": {
-       "type": "linear"
-      },
-      "axisBorderShow": false,
-      "axisCenteredZero": false,
-      "axisColorMode": "text",
-      "axisLabel": "",
-      "thresholdsStyle": {
-       "mode": "off"
-      },
-      "lineStyle": {
-       "fill": "solid"
-      },
-      "showValues": false
-     }
-    },
-    "overrides": []
-   },
-   "options": {
-    "legend": {
-     "calcs": [],
-     "displayMode": "list",
-     "placement": "bottom",
-     "showLegend": true
-    },
-    "tooltip": {
-     "hideZeros": false,
-     "mode": "multi",
-     "sort": "desc"
-    }
-   }
-  },
-  {
-   "id": 10,
-   "type": "timeseries",
-   "title": "Блокировки BlockBoard",
-   "datasource": {
-    "type": "elasticsearch",
-    "uid": "eg242vho5o45cc"
-   },
-   "description": "",
-   "gridPos": {
-    "h": 8,
-    "w": 12,
-    "x": 12,
-    "y": 16
-   },
-   "targets": [
-    {
-     "refId": "A",
-     "query": "ls_event:weekly",
-     "metrics": [
-      {
-       "id": "1",
-       "type": "max",
-       "field": "ls_bb_active",
-       "meta": {},
-       "settings": {},
-       "alias": "активных"
-      }
-     ],
-     "bucketAggs": [
-      {
-       "id": "2",
-       "type": "date_histogram",
-       "field": "timestamp",
-       "settings": {
-        "interval": "auto",
-        "min_doc_count": 0
-       }
-      }
-     ],
-     "timeField": "timestamp",
-     "datasource": {
-      "type": "elasticsearch",
-      "uid": "eg242vho5o45cc"
-     }
-    },
-    {
-     "refId": "B",
-     "query": "ls_event:weekly",
-     "metrics": [
-      {
-       "id": "1",
-       "type": "max",
-       "field": "ls_bb_added_week",
-       "meta": {},
-       "settings": {},
-       "alias": "добавлено за нед."
-      }
-     ],
-     "bucketAggs": [
-      {
-       "id": "2",
-       "type": "date_histogram",
-       "field": "timestamp",
-       "settings": {
-        "interval": "auto",
-        "min_doc_count": 0
-       }
-      }
-     ],
-     "timeField": "timestamp",
-     "datasource": {
-      "type": "elasticsearch",
-      "uid": "eg242vho5o45cc"
-     }
-    },
-    {
-     "refId": "C",
-     "query": "ls_event:weekly",
-     "metrics": [
-      {
-       "id": "1",
-       "type": "max",
-       "field": "ls_bb_removed_week",
-       "meta": {},
-       "settings": {},
-       "alias": "снято за нед."
-      }
-     ],
-     "bucketAggs": [
-      {
-       "id": "2",
-       "type": "date_histogram",
-       "field": "timestamp",
-       "settings": {
-        "interval": "auto",
-        "min_doc_count": 0
-       }
-      }
-     ],
-     "timeField": "timestamp",
-     "datasource": {
-      "type": "elasticsearch",
-      "uid": "eg242vho5o45cc"
-     }
-    }
-   ],
-   "fieldConfig": {
-    "defaults": {
-     "unit": "short",
-     "color": {
-      "mode": "palette-classic"
-     },
-     "custom": {
-      "drawStyle": "line",
-      "fillOpacity": 15,
-      "lineWidth": 1.5,
-      "showPoints": "always",
-      "spanNulls": 604800000,
-      "stacking": {
-       "group": "A",
-       "mode": "none"
-      },
-      "axisPlacement": "auto",
-      "barAlignment": 0,
-      "barWidthFactor": 0.6,
-      "gradientMode": "none",
-      "hideFrom": {
-       "legend": false,
-       "tooltip": false,
-       "viz": false
-      },
-      "insertNulls": false,
-      "lineInterpolation": "smooth",
-      "pointSize": 5,
-      "scaleDistribution": {
-       "type": "linear"
-      },
-      "axisBorderShow": false,
-      "axisCenteredZero": false,
-      "axisColorMode": "text",
-      "axisLabel": "",
-      "thresholdsStyle": {
-       "mode": "off"
-      },
-      "lineStyle": {
-       "fill": "solid"
-      },
-      "showValues": false
-     }
-    },
-    "overrides": []
-   },
-   "options": {
-    "legend": {
-     "calcs": [],
-     "displayMode": "list",
-     "placement": "bottom",
-     "showLegend": true
-    },
-    "tooltip": {
-     "hideZeros": false,
-     "mode": "multi",
-     "sort": "desc"
-    }
-   }
-  },
-  {
-   "id": 11,
-   "type": "logs",
-   "title": "События Lab Score (weekly + monthly PDF)",
-   "datasource": {
-    "type": "elasticsearch",
-    "uid": "eg242vho5o45cc"
-   },
-   "gridPos": {
-    "h": 8,
-    "w": 24,
-    "x": 0,
-    "y": 24
-   },
-   "targets": [
-    {
-     "refId": "A",
-     "query": "tool:labscore",
-     "timeField": "timestamp",
-     "metrics": [
-      {
-       "id": "1",
-       "type": "logs"
-      }
-     ],
-     "bucketAggs": [
-      {
-       "id": "2",
-       "type": "date_histogram",
-       "field": "timestamp",
-       "settings": {
-        "interval": "auto"
-       }
-      }
-     ],
-     "datasource": {
-      "type": "elasticsearch",
-      "uid": "eg242vho5o45cc"
-     }
-    }
-   ],
-   "options": {
-    "showLabels": false,
-    "showTime": true,
-    "sortOrder": "Descending",
-    "wrapLogMessage": true,
-    "prettifyLogMessage": false,
-    "enableLogDetails": true,
-    "dedupStrategy": "none"
-   }
-  }
- ]
+  "timezone": "browser",
+  "title": "Зрелость лаборатории (Lab Score)",
+  "uid": "ds-labscore",
+  "version": 3,
+  "weekStart": ""
 }

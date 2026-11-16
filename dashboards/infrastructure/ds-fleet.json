@@ -35,6 +35,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
+  "id": null,
   "liveNow": false,
   "panels": [
     {
@@ -1421,5 +1422,6 @@
   },
   "timezone": "browser",
   "title": "Парк хостов",
-  "uid": "ds-fleet"
+  "uid": "ds-fleet",
+  "version": 10
 }

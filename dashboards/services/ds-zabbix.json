@@ -35,6 +35,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
+  "id": null,
   "liveNow": false,
   "panels": [
     {
@@ -127,6 +128,9 @@
           "item": {
             "filter": "/: CPU utilization$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -134,9 +138,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -220,6 +221,9 @@
           "item": {
             "filter": "/: Memory utilization$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -227,9 +231,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -247,6 +248,23 @@
           "color": {
             "mode": "thresholds"
           },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "Недоступен"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 1,
+                  "text": "Доступен"
+                }
+              },
+              "type": "value"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -260,24 +278,7 @@
               }
             ]
           },
-          "unit": "none",
-          "mappings": [
-            {
-              "type": "value",
-              "options": {
-                "0": {
-                  "text": "Недоступен",
-                  "color": "red",
-                  "index": 0
-                },
-                "1": {
-                  "text": "Доступен",
-                  "color": "green",
-                  "index": 1
-                }
-              }
-            }
-          ]
+          "unit": "none"
         }
       },
       "gridPos": {
@@ -324,6 +325,9 @@
           "item": {
             "filter": "/: Zabbix agent availability$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -331,9 +335,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -417,6 +418,9 @@
           "item": {
             "filter": "/^FS \\[.*\\]: Space: Used, in %$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -424,9 +428,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -500,6 +501,9 @@
           "item": {
             "filter": "/: (System uptime|Uptime)$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -507,9 +511,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -635,6 +636,9 @@
           "item": {
             "filter": "/: CPU utilization$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -642,9 +646,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -757,6 +758,9 @@
           "item": {
             "filter": "/: CPU (user|system|iowait|nice|softirq|interrupt|steal|privileged|DPC) time$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -764,9 +768,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -891,6 +892,9 @@
           "item": {
             "filter": "/: Load average \\((1m|5m|15m) avg\\)$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -898,9 +902,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         },
         {
@@ -921,6 +922,9 @@
           "item": {
             "filter": "/: CPU queue length$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -928,9 +932,6 @@
           "queryType": "0",
           "refId": "B",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -1042,6 +1043,9 @@
           "item": {
             "filter": "/: (Available memory|Used memory|Total memory)$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -1049,9 +1053,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -1185,6 +1186,9 @@
           "item": {
             "filter": "/: Memory utilization$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -1192,9 +1196,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         },
         {
@@ -1215,6 +1216,9 @@
           "item": {
             "filter": "/: Free swap space in %$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -1222,9 +1226,6 @@
           "queryType": "0",
           "refId": "B",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -1328,6 +1329,9 @@
           "item": {
             "filter": "/^FS \\[.*\\]: Space: Used, in %$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -1335,9 +1339,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -1450,6 +1451,9 @@
           "item": {
             "filter": "/^FS \\[.*\\]: Space: Used, in %$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -1457,9 +1461,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -1584,6 +1585,9 @@
           "item": {
             "filter": "/: Disk (read|write) rate$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -1591,9 +1595,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -1706,6 +1707,9 @@
           "item": {
             "filter": "/: Disk utilization( by idle time)?$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -1713,9 +1717,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -1840,6 +1841,9 @@
           "item": {
             "filter": "/: Bits (received|sent)$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -1847,9 +1851,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -1961,6 +1962,9 @@
           "item": {
             "filter": "/: (Inbound|Outbound) packets (discarded|with errors)$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -1968,9 +1972,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -2095,6 +2096,9 @@
           "item": {
             "filter": "/: Number of processed values per second$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -2102,9 +2106,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -2216,6 +2217,9 @@
           "item": {
             "filter": "/: (Queue|Queue over 10 minutes|Preprocessing queue|LLD queue)$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -2223,9 +2227,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -2339,6 +2340,9 @@
           "item": {
             "filter": "/: (Configuration cache|Value cache|History write cache|Trend write cache), % used$/"
           },
+          "itemTag": {
+            "filter": ""
+          },
           "options": {
             "showDisabledItems": false,
             "skipEmptyValues": true
@@ -2346,9 +2350,6 @@
           "queryType": "0",
           "refId": "A",
           "resultFormat": "time_series",
-          "itemTag": {
-            "filter": ""
-          },
           "schema": 12
         }
       ],
@@ -2366,77 +2367,25 @@
   "templating": {
     "list": [
       {
-        "allowCustomValue": true,
         "current": {
           "text": "homeserver.monitoring.test",
           "value": "homeserver.monitoring.test"
+        },
+        "datasource": {
+          "type": "alexanderzobnin-zabbix-datasource",
+          "uid": "eg2asfb9khv5sa"
         },
         "hide": 0,
         "includeAll": false,
         "label": "Host (по одному — иначе Zabbix не успевает отдать историю)",
         "multi": false,
         "name": "host",
-        "options": [
-          {
-            "text": "DC.arsentyev.local",
-            "value": "DC.arsentyev.local",
-            "selected": false
-          },
-          {
-            "text": "homeserver.monitoring.test",
-            "value": "homeserver.monitoring.test",
-            "selected": true
-          },
-          {
-            "text": "homelab.monitoring.test",
-            "value": "homelab.monitoring.test",
-            "selected": false
-          },
-          {
-            "text": "redos-server.monitoring.test",
-            "value": "redos-server.monitoring.test",
-            "selected": false
-          },
-          {
-            "text": "RedOS-Workstation",
-            "value": "RedOS-Workstation",
-            "selected": false
-          },
-          {
-            "text": "RedOSRP16.monitoring.test",
-            "value": "RedOSRP16.monitoring.test",
-            "selected": false
-          },
-          {
-            "text": "redos-raspi.monitoring.test",
-            "value": "redos-raspi.monitoring.test",
-            "selected": false
-          },
-          {
-            "text": "server.monitoring.test",
-            "value": "server.monitoring.test",
-            "selected": false
-          },
-          {
-            "text": "W11-Desktop",
-            "value": "W11-Desktop",
-            "selected": false
-          },
-          {
-            "text": "wazuh.monitoring.test",
-            "value": "wazuh.monitoring.test",
-            "selected": false
-          },
-          {
-            "text": "wazuh-homelab.monioring.test",
-            "value": "wazuh-homelab.monioring.test",
-            "selected": false
-          }
-        ],
-        "query": "DC.arsentyev.local,homeserver.monitoring.test,homelab.monitoring.test,redos-server.monitoring.test,RedOS-Workstation,RedOSRP16.monitoring.test,redos-raspi.monitoring.test,server.monitoring.test,W11-Desktop,wazuh.monitoring.test,wazuh-homelab.monioring.test",
+        "options": [],
+        "query": "*.*",
+        "refresh": 1,
         "skipUrlSync": false,
-        "type": "custom",
-        "valuesFormat": "csv"
+        "sort": 1,
+        "type": "query"
       }
     ]
   },
@@ -2460,5 +2409,6 @@
   },
   "timezone": "browser",
   "title": "Обзор Zabbix",
-  "uid": "ds-zabbix"
+  "uid": "ds-zabbix",
+  "version": 19
 }

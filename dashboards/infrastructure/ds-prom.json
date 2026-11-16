@@ -35,6 +35,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
+  "id": null,
   "liveNow": false,
   "panels": [
     {
@@ -1409,5 +1410,6 @@
   },
   "timezone": "browser",
   "title": "Здоровье Prometheus",
-  "uid": "ds-prom"
+  "uid": "ds-prom",
+  "version": 10
 }

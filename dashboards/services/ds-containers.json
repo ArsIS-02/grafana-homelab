@@ -35,6 +35,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
+  "id": null,
   "liveNow": false,
   "panels": [
     {
@@ -1368,5 +1369,6 @@
   },
   "timezone": "browser",
   "title": "Контейнеры",
-  "uid": "ds-containers"
+  "uid": "ds-containers",
+  "version": 9
 }

@@ -35,6 +35,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
+  "id": null,
   "liveNow": false,
   "panels": [
     {
@@ -959,5 +960,6 @@
   },
   "timezone": "browser",
   "title": "Хранилище и диски",
-  "uid": "ds-storage"
+  "uid": "ds-storage",
+  "version": 10
 }

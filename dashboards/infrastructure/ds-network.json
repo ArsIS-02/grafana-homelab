@@ -35,6 +35,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
+  "id": null,
   "liveNow": false,
   "panels": [
     {
@@ -1075,5 +1076,6 @@
   },
   "timezone": "browser",
   "title": "Сеть",
-  "uid": "ds-network"
+  "uid": "ds-network",
+  "version": 10
 }

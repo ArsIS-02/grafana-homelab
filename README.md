@@ -116,7 +116,7 @@ sed -i 's/bg23rxlukphc0f/<ваш-uid-prometheus>/g' dashboards/*/*.json
 
 ## Версии
 
-Grafana 13.2, Prometheus, node_exporter, cAdvisor, Graylog 7.2, плагин Zabbix 6.0.3 (Zabbix 6.4), RED OS 8.
+Grafana 13.3.1 (образ зафиксирован: в `:latest` 13.4.2 не хватает бинарников core-плагинов), Prometheus, node_exporter, cAdvisor, Graylog 7.2, плагин Zabbix 6.10.3 (Zabbix 6.4, ставится вручную из релиза на GitHub — в каталоге Grafana его нет), RED OS 8.
 
 ## Лицензия
 

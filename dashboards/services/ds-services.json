@@ -35,6 +35,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
+  "id": null,
   "liveNow": false,
   "panels": [
     {
@@ -893,5 +894,6 @@
   },
   "timezone": "browser",
   "title": "Сервисы",
-  "uid": "ds-services"
+  "uid": "ds-services",
+  "version": 7
 }
